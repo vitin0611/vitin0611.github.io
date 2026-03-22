@@ -45,12 +45,20 @@ body {
 /* Texto lado */
 .mensaje {
     position: absolute;
-    right: 10%;
-    top: 40%;
+    right: 8%;
+    top: 35%;
+    width: 300px;
+    text-align: center;
     font-size: 22px;
     color: #5c4d00;
+    line-height: 1.6;
     opacity: 0;
     transition: opacity 2s ease;
+
+    background: rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
 }
 
 /* Contenedor planta */
@@ -85,19 +93,20 @@ body {
     animation: aparecer 1s forwards;
 }
 
-/* Girasol */
+/* Girasol GRANDE */
 .sunflower {
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     transform: scale(0);
     animation: bloom 0.8s forwards;
 }
 
+/* Centro */
 .center {
     position: absolute;
-    width: 25px;
-    height: 25px;
+    width: 40px;
+    height: 40px;
     background: #5c3d00;
     border-radius: 50%;
     top: 50%;
@@ -105,10 +114,11 @@ body {
     transform: translate(-50%, -50%);
 }
 
+/* Pétalos */
 .petal {
     position: absolute;
-    width: 20px;
-    height: 10px;
+    width: 30px;
+    height: 15px;
     background: #ffcc00;
     border-radius: 10px;
     top: 50%;
@@ -116,6 +126,7 @@ body {
     transform-origin: center left;
 }
 
+/* Animaciones */
 @keyframes bloom {
     to { transform: scale(1); }
 }
@@ -141,11 +152,10 @@ body {
     </div>
 
     <div class="mensaje" id="mensaje">
-        Te amo como los girasoles al sol: incluso en la oscuridad, 
-        siempre encuentro la forma de volver hacia ti, 
-        pase lo que pase. 🌻
-<br>
-       
+        Te amo como los girasoles al sol 🌻<br><br>
+        incluso en la oscuridad,<br>
+        siempre encuentro la forma de volver hacia ti 💛<br><br>
+        pase lo que pase ✨
     </div>
 
 </div>
@@ -162,10 +172,8 @@ function empezar() {
     setTimeout(() => {
         escena.classList.add("visible");
 
-        // Después de crecer el tallo
         setTimeout(crearPlanta, 4000);
 
-        // Mostrar texto
         setTimeout(() => {
             mensaje.style.opacity = "1";
         }, 5000);
@@ -173,7 +181,7 @@ function empezar() {
     }, 1000);
 }
 
-/* Crear hojas */
+/* Hoja */
 function hoja(top, left, delay) {
     const leaf = document.createElement("div");
     leaf.className = "leaf";
@@ -183,7 +191,7 @@ function hoja(top, left, delay) {
     stem.appendChild(leaf);
 }
 
-/* Crear girasol */
+/* Girasol */
 function girasol(top, left, delay) {
     const f = document.createElement("div");
     f.className = "sunflower";
@@ -194,7 +202,7 @@ function girasol(top, left, delay) {
     for (let i = 0; i < 12; i++) {
         const p = document.createElement("div");
         p.className = "petal";
-        p.style.transform = `rotate(${i * 30}deg) translateX(15px)`;
+        p.style.transform = `rotate(${i * 30}deg) translateX(25px)`;
         f.appendChild(p);
     }
 
@@ -205,15 +213,15 @@ function girasol(top, left, delay) {
     stem.appendChild(f);
 }
 
-/* Crear planta completa */
+/* Crear planta */
 function crearPlanta() {
     hoja(80, -35, 0);
     hoja(160, 5, 0.5);
 
-    girasol(40, -25, 0);
-    girasol(120, 20, 0.5);
-    girasol(200, -30, 1);
-    girasol(260, 15, 1.5);
+    girasol(40, -40, 0);
+    girasol(130, 30, 0.5);
+    girasol(220, -50, 1);
+    girasol(280, 25, 1.5);
 }
 </script>
 
