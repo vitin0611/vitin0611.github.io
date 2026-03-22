@@ -2,126 +2,219 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Flores Amarillas 💛</title>
+<title>Para ti 💛</title>
 
 <style>
 body {
     margin: 0;
     height: 100vh;
-    background: linear-gradient(135deg, #fff3b0, #ffd60a);
+    background: linear-gradient(to top, #fff3b0, #ffd60a);
     font-family: 'Segoe UI', sans-serif;
     overflow: hidden;
 }
 
-/* Contenido central */
+/* Pantalla inicial */
+.inicio {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    color: #5c4d00;
+    cursor: pointer;
+    transition: opacity 1s ease;
+}
+
+.oculto {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Escena */
+.escena {
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+
+.visible {
+    opacity: 1;
+}
+
+/* Texto lado */
+.mensaje {
+    position: absolute;
+    right: 10%;
+    top: 40%;
+    font-size: 22px;
+    color: #5c4d00;
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+
+/* Contenedor planta */
 .container {
     position: absolute;
+    bottom: 0;
+    left: 30%;
+}
+
+/* Tallo */
+.stem {
+    width: 6px;
+    height: 0;
+    background: #2e7d32;
+    border-radius: 5px;
+    animation: grow 4s forwards;
+}
+
+@keyframes grow {
+    to { height: 320px; }
+}
+
+/* Hoja */
+.leaf {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    background: #2e7d32;
+    border-radius: 20px 0;
+    transform: rotate(-30deg);
+    opacity: 0;
+    animation: aparecer 1s forwards;
+}
+
+/* Girasol */
+.sunflower {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    transform: scale(0);
+    animation: bloom 0.8s forwards;
+}
+
+.center {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #5c3d00;
+    border-radius: 50%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-align: center;
-    color: #5c4d00;
 }
 
-h1 {
-    font-size: 50px;
-    margin-bottom: 10px;
-}
-
-p {
-    font-size: 22px;
-}
-
-/* Botón */
-button {
-    margin-top: 20px;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 25px;
-    background: #ffcc00;
-    color: #5c4d00;
-    font-size: 18px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    background: #ffdb4d;
-    transform: scale(1.1);
-}
-
-/* Flores */
-.flower {
+.petal {
     position: absolute;
     width: 20px;
-    height: 20px;
-    background: radial-gradient(circle, #ffea00, #ffb700);
-    border-radius: 50%;
-    animation: fall linear infinite;
+    height: 10px;
+    background: #ffcc00;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform-origin: center left;
 }
 
-@keyframes fall {
-    0% {
-        transform: translateY(-10vh) scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(110vh) scale(0.8);
-        opacity: 0;
-    }
+@keyframes bloom {
+    to { transform: scale(1); }
 }
 
-/* Mensaje oculto */
-.mensaje {
-    display: none;
-    margin-top: 20px;
-    font-size: 20px;
-    animation: fade 1s ease;
-}
-
-@keyframes fade {
-    from {opacity: 0;}
-    to {opacity: 1;}
+@keyframes aparecer {
+    to { opacity: 1; }
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
-    <h1>🌼 Flores Amarillas 🌼</h1>
-    <p>Para la persona que cambio mi vida 💛</p>
+<!-- Pantalla inicial -->
+<div class="inicio" id="inicio" onclick="empezar()">
+    💛 Para ti 💛
+</div>
 
-    <button onclick="mostrar()">Toca aquí 💌</button>
+<!-- Escena -->
+<div class="escena" id="escena">
 
-    <div class="mensaje" id="msg">
-        Eres lo mejor que me ha pasado 💛<br>
-        Gracias por ser parte de mi ✨
+    <div class="container">
+        <div class="stem" id="stem"></div>
     </div>
+
+    <div class="mensaje" id="mensaje">
+        Te amo como los girasoles al sol: incluso en la oscuridad, 
+        siempre encuentro la forma de volver hacia ti, 
+        pase lo que pase. 🌻
+<br>
+       
+    </div>
+
 </div>
 
 <script>
-function mostrar() {
-    document.getElementById("msg").style.display = "block";
-}
+const inicio = document.getElementById("inicio");
+const escena = document.getElementById("escena");
+const stem = document.getElementById("stem");
+const mensaje = document.getElementById("mensaje");
 
-/* Animación de flores */
-function crearFlor() {
-    const flor = document.createElement("div");
-    flor.classList.add("flower");
-
-    flor.style.left = Math.random() * 100 + "vw";
-    flor.style.animationDuration = (4 + Math.random() * 4) + "s";
-
-    document.body.appendChild(flor);
+function empezar() {
+    inicio.classList.add("oculto");
 
     setTimeout(() => {
-        flor.remove();
-    }, 8000);
+        escena.classList.add("visible");
+
+        // Después de crecer el tallo
+        setTimeout(crearPlanta, 4000);
+
+        // Mostrar texto
+        setTimeout(() => {
+            mensaje.style.opacity = "1";
+        }, 5000);
+
+    }, 1000);
 }
 
-setInterval(crearFlor, 200);
+/* Crear hojas */
+function hoja(top, left, delay) {
+    const leaf = document.createElement("div");
+    leaf.className = "leaf";
+    leaf.style.top = top + "px";
+    leaf.style.left = left + "px";
+    leaf.style.animationDelay = delay + "s";
+    stem.appendChild(leaf);
+}
+
+/* Crear girasol */
+function girasol(top, left, delay) {
+    const f = document.createElement("div");
+    f.className = "sunflower";
+    f.style.top = top + "px";
+    f.style.left = left + "px";
+    f.style.animationDelay = delay + "s";
+
+    for (let i = 0; i < 12; i++) {
+        const p = document.createElement("div");
+        p.className = "petal";
+        p.style.transform = `rotate(${i * 30}deg) translateX(15px)`;
+        f.appendChild(p);
+    }
+
+    const c = document.createElement("div");
+    c.className = "center";
+    f.appendChild(c);
+
+    stem.appendChild(f);
+}
+
+/* Crear planta completa */
+function crearPlanta() {
+    hoja(80, -35, 0);
+    hoja(160, 5, 0.5);
+
+    girasol(40, -25, 0);
+    girasol(120, 20, 0.5);
+    girasol(200, -30, 1);
+    girasol(260, 15, 1.5);
+}
 </script>
 
 </body>
